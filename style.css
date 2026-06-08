@@ -2,29 +2,43 @@ body {
   text-align: center;
   flex-direction: column;
   background-color: #0008ff62;
+  /* Added responsive padding and margin */
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 #gameHeading {
   font-size: 50px;
   font-family: Arial, Helvetica, sans-serif;
+  /* Make heading responsive */
+  font-size: clamp(30px, 8vw, 70px);
+  margin: 20px 0;
 }
 
 #conatiner {
-
-    text-align: center;
+  text-align: center;
   justify-content: center;
-  align-items: center;display: flex;
+  align-items: center;
+  display: flex;
   height: 60vh;
-
-
+  /* Responsive height */
+  height: auto;
+  min-height: 50vh;
+  padding: 20px;
 }
 
 #boxesBox {
-  
-  display: flex ;
+  display: flex;
   flex-wrap: wrap;
   width: 50vh;
   gap: 7px;
+  /* Make grid responsive - use viewport units with max width */
+  width: min(70vh, 90vw);
+  justify-content: center;
 }
 
 .box {
@@ -32,61 +46,105 @@ body {
   width: 100px;
   background-color: #31ffe776;
   border: 8px solid black;
-border-radius: 20px;  
-transition: background 1s;
-color: black;
-
+  border-radius: 20px;
+  transition: background 1s;
+  color: black;
+  /* Make boxes responsive */
+  height: clamp(60px, 15vw, 120px);
+  width: clamp(60px, 15vw, 120px);
+  border-width: clamp(4px, 1.5vw, 8px);
+  border-radius: clamp(12px, 4vw, 20px);
 }
 
-.box:hover{
-  background-color: #31ffe7 ;
-  width: 100px;
-  height: 100px;
-
-
+.box:hover {
+  background-color: #31ffe7;
+  /* Remove fixed dimensions from hover to maintain responsiveness */
+  /* width: 100px; */
+  /* height: 100px; */
+  /* Use transform for better hover effect */
+  transform: scale(1.02);
 }
 
-
-#resetButton{
-
+#resetButton {
   height: 40px;
   width: 100px;
   background-color: #98fb987b;
   border: 5px solid green;
-border-radius: 10px;
-transition: background 1s;
-margin-right: 10px;
-font-family: Arial, Helvetica, sans-serif;
-
-
-}
-
-#resetButton:hover{
-    background-color: #98fb98;
-
+  border-radius: 10px;
+  transition: background 1s;
+  margin-right: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* Make button responsive */
+  height: clamp(35px, 8vh, 50px);
+  width: clamp(80px, 20vw, 120px);
+  font-size: clamp(12px, 3vw, 16px);
+  border-width: clamp(3px, 1vw, 5px);
+  cursor: pointer;
 }
 
 #startButton {
-
   height: 40px;
   width: 100px;
   background-color: #00fbff91;
   border: 5px solid darkblue;
-border-radius: 10px;
-transition: background 1s;
-margin-left: 10px;
-
-
+  border-radius: 10px;
+  transition: background 1s;
+  margin-left: 10px;
+  /* Make button responsive */
+  height: clamp(35px, 8vh, 50px);
+  width: clamp(80px, 20vw, 120px);
+  font-size: clamp(12px, 3vw, 16px);
+  border-width: clamp(3px, 1vw, 5px);
+  cursor: pointer;
 }
 
-#startButton:hover{
+#startButton:hover {
   background-color: #00fbff;
-
-
 }
 
-.hide{
-
+.hide {
   display: none;
+}
 
+#footer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  right: 50px;
+  bottom: 10px;
+  /* Make footer responsive */
+  font-size: clamp(8px, 2vw, 12px);
+  right: clamp(10px, 4vw, 50px);
+  bottom: clamp(5px, 2vh, 10px);
+}
+
+/* Extra responsiveness for very small screens */
+@media (max-width: 600px) {
+  #boxesBox {
+    gap: 5px;
+  }
+  
+  .box {
+    border-width: 4px;
+  }
+  
+  #resetButton, #startButton {
+    margin: 5px;
+  }
+}
+
+/* For landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  #conatiner {
+    min-height: 30vh;
+  }
+  
+  .box {
+    height: clamp(40px, 12vh, 80px);
+    width: clamp(40px, 12vh, 80px);
+  }
+  
+  #gameHeading {
+    margin: 10px 0;
+  }
 }
